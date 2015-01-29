@@ -4,10 +4,15 @@
 	*/
 	class Token
 	{
-		public static function generate()
+		public static function generate($key)
 		{
 			//Generating a random 48 long key
-			return $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
+			
+			if(!isset($key)){
+				$key = 48;	
+			}
+			
+			return $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes($key));
 		}
 
 		public static function check($token)
